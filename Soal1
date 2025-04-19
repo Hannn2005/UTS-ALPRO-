@@ -1,1 +1,90 @@
-//Kerjakan soal nomor 1 disini (Hapus komentar ini)
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main(){
+    system("clear");  // UNTUK OS WINDOWS system("cls")  !!!;
+
+    string nomor;
+    int total = 0;
+
+    cout << "Masukkan nomor kartu digital : ";
+    getline(cin,nomor);
+
+
+    if (nomor.size() == 14){   // mencek banyak digit dari kartu 
+        if (nomor[0] == '6' && nomor[1] == '5'){   //cek ciri dari kartu nusantara yaitu dimulai dari 65
+            cout << "Tipe Kartu = Nusantara";   
+        }
+        else{goto invalid;}
+    }
+
+    else if (nomor.size()== 16){
+        if ((nomor[0] == '7' && nomor[1] == '7') || (nomor[0] == '7' && nomor[1] == '8')){   //cek ciri dari kartu garuda yaitu dimulai dari 77 atau 78
+            cout << "Tipe Kartu = Garuda";   
+        }
+        else{goto invalid;}
+    }
+
+    else if (nomor.size() == 15){
+        if (nomor[0] == '9' && nomor[1] == '1'){   //cek ciri dari kartu merdeka yaitu dimulai dari 91
+            cout << "Tipe Kartu = Merdeka";   
+        }
+        else{goto invalid;}
+    }
+
+    else{
+        invalid:
+        cout << "Tipe Kartu : Tidak Diketahui\n";
+        cout << "NOMOR KARTU TIDAK VALID";
+        goto keluar;
+    }
+
+
+    // Kita mengecek validasi dari sebuah kartu itu valid atau tidak 
+
+       
+    for (int i = 0 ; i < nomor.size() ; i++){ 
+        if (nomor.size() % 2 == 0){   //jika jumlah digit kode genap (kartu Garuda dan Nusantara)
+            if (i == 0 || i%2 == 0){    // kode digit genap (penjelasan dibawah)
+                int angka = nomor[i] - '0';  //mencasting indeks string ke integer dengan menggunakan referensi dari karakter ascii
+                angka = angka*2;
+                if (angka > 9){ //jika angka yang dikali 2 hasilnya lebih dari 9 maka kita pecah angka tersebut
+                    angka = angka/10 + angka - ((angka/10)*10); 
+                    total = total + angka;
+                }
+                else{   // jika tidak > 9 langsung tambahkan
+                    total = total + angka;
+                }
+            }
+            else{  // dijumlahkan dengan indeks yang tidak di kalikan 2
+                int angka = nomor[i] - '0';
+                total = total + angka;
+            }
+        }
+
+        else{   //jika jumlah digit kode ganjil (kartu Merdeka)
+            if (i%2 == 1){  // kode digit ganjil (penjelasan dibawah)
+                int angka = nomor[i] - '0';  //mencasting indeks string ke integer dengan menggunakan referensi dari karakter ascii
+                angka = angka*2;
+                if (angka > 9){ //jika angka yang dikali 2 hasilnya lebih dari 9 maka kita pecah angka tersebut
+                    angka = angka/10 + angka - ((angka/10)*10);
+                    total = total + angka;
+                }
+                else{ // jika tidak > 9 langsung tambahkan
+                    total = total + angka;
+                }
+            }
+            else{// dijumlahkan dengan indeks yang tidak di kalikan 2 
+                int angka = nomor[i] - '0';
+                total = total + angka;
+            }
+
+        }
+    }
+
+    cout <<"\n"<< ((total%10 == 0) ?  "Nomor Kartu Valid" : "Nomor Kartu Tidak Valid"); 
+
+    keluar:
+}
