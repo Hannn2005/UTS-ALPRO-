@@ -88,3 +88,43 @@ int main(){
 
     keluar:
 }
+
+/* LOGIKA PENYELESAIAN
+
+1.kita memasukkan kode sesuai dengan ketentuan yang berlaku yang dimana indeks 0 dan 1 akan menentukan jenis
+dari kartu kita.
+
+2. setelah itu terdapat algoritma validasi yang dimana Mulai dari digit kedua dari belakang, kalikan setiap digit selang-seling (setiap 2 digit)
+dengan 2.
+
+3. dalam hal ini kami menemukan pola untuk menyelesaikan permasalahan, yang dimana jika kode digit itu genap maka indeks yang dikali 2 yaitu,
+
+indeks 0,2,4,6,8,10, dan 12 --> untuk kartu nusantara (14 digit --> 0 sampai 13)
+indeks 0,2,4,6,8,10,12,14 --> untuk kartu garuda    (16 digit --> 0 sampai 15)
+
+*** jika indeks yang dikali > 9 maka kita pecah angka tersebut dan menjumlahkannya dengan cara ini ***
+
+angka = angka/10 + angka - ((angka/10)*10); 
+
+contoh : jika indeks 6 --> maka 6*2 = 12 --> angka = 12
+
+jadi angka dibagi 10 (puluhan)  --> 12/10 = 1,2 --> 1 (karena int otomatis membulatkan)
+
+lalu 12 - ((12/10)*10) --> 12 - 10 --> 2
+
+selanjutnya tinggal kita jumlahkan  1+2 = 3
+
+
+4. jika kode digit itu ganjil (kartu) maka indeks yang dikali 2 yaitu,
+
+indeks --> 1,3,5,7,9,11,13 --> untuk kartu merdeka 
+
+dan melaui proses perhitungan yang sama seperti diatas
+
+
+5. setelah itu dengan menggunakan for kita menjumlahkan seluruh indeks yang dikali 2 dan yang tidak, apabila hasilnya bisa dibagi 10
+maka kartu itu valid bila sebaliknya maka tidak valid 
+
+*/
+
+
