@@ -1,1 +1,81 @@
-//Kerjakan soal nomor 2 disini (Hapus komentar ini)
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    system("clear");  // UNTUK OS WINDOWS system("cls")  !!!;
+
+    string kode;
+    int keluar_parkir,angka,masuk_parkir = 0,tarif_awal,total,tarif_selanjutnya,lama_parkir;
+    
+    cout << "Masukkan kode parkir : ";
+    cin >> kode;
+
+    cout << "Masukkan Keluar Parkir :";
+    cin >> keluar_parkir;
+
+    cout << "\n\n";
+
+    if(kode.size() != 10){cout << "Kode Tidak Valid";goto keluar;} // mengecek apakah kode 10 digit, jika tidak maka kode tidak valid
+
+    for (int i = 2 ; i <= 5 ; i++){   //ini kita mencasting indeks string ke integer (jam dari digit 3-6)
+        if (i == 2){angka = (kode[i] - '0')*1000;}  //dengan cara memisahkan ribuan - ratusan - puluhan - satuan
+        else if (i == 3){angka = (kode[i] - '0')*100;}
+        else if (i == 4){angka = (kode[i] - '0')*10;}
+        else if (i == 5){angka = (kode[i] - '0')*1;}
+        masuk_parkir = masuk_parkir +angka;
+    }
+
+    if(keluar_parkir >= masuk_parkir){  //penjelasan di bawah
+        lama_parkir = ceil(floor(keluar_parkir - masuk_parkir)/100); //kondisi jika tidak melibihi jam 23:59
+    }
+    else{
+        lama_parkir = ceil(float((((keluar_parkir/100) % 100)*60 + (keluar_parkir - ((keluar_parkir/100) % 100)*100)+1440) - 
+        (((masuk_parkir/100) % 100)*60 + (masuk_parkir - ((masuk_parkir/100) % 100)*100)))/60) ;
+
+        //jika melebihi jam 23:59
+    }
+
+    if (kode[0] == '1' && kode[1] == '0'){          //tarif mobil
+        cout << "-----Ringkasan Parkir-----";
+        cout << "\nJenis Kendaraan : Mobil Pribadi";
+
+        tarif_awal = 5000;         
+        tarif_selanjutnya = 3000*(lama_parkir-1);
+        total = tarif_awal + tarif_selanjutnya;    
+    }
+
+    else if (kode[0] == '2' && kode[1] == '0'){  //tarif motor
+        cout << "-----Ringkasan Parkir-----";
+        cout << "Jenis Kendaraan : Motor";
+      
+        tarif_awal = 3000;
+        tarif_selanjutnya = 2000*(lama_parkir-1);
+        total = tarif_awal + tarif_selanjutnya;
+    }
+
+    else if (kode[0] == '3' && kode[1] == '0'){  //tarif bus
+        cout << "-----Ringkasan Parkir-----";
+        cout << "Jenis Kendaraan : Bus";
+
+        tarif_awal = 10000;
+        tarif_selanjutnya = 7000*(lama_parkir-1);
+        total = tarif_awal + tarif_selanjutnya;
+        
+    }
+
+    else{   
+        cout << "Kode Tidak Valid";
+        goto keluar;
+    }
+
+    cout << "\nWaktu Masuk   : " << kode[2] << kode[3] << ":" << kode[4] << kode[5];
+    cout << "\nWaktu Keluar  : " << floor(keluar_parkir/100) << ":" << keluar_parkir-(floor(keluar_parkir/100)*100);
+    cout << "\nDurasi Parkir : " << lama_parkir << " Jam";
+    cout << "\nLokasi Parkir : " << kode[6] << kode[7] << kode[8] << kode[9];
+    cout << "\nTotal Biaya   : " << "Rp "<< total;
+
+    keluar:
+}
