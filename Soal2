@@ -79,3 +79,55 @@ int main(){
 
     keluar:
 }
+
+/* LOGIKA PENYELESAIAN
+
+
+1. kita akan mengecek kode terlebih dahulu apakah 10 digit atau tidak, jika tidak program akan keluar;
+
+2. sebagaimana dengan ketentuan digit 1-2 --> jenis kendaraan , digit 3-6 --> jam masuk format HH:MM , selebihnya tempat parkir
+
+3. kami melakukan casting digit ke 3-6 (indeks 2-5) dengan merubahnya ke integer dengan cara :
+
+contoh digit ke 2 sampai 5 itu 1830 
+
+maka kami memisahkan dengan konsep bilangan sederhana
+
+jadi 1830 itu terdiri dari = 1000 + 800 + 30 + 0
+
+indeks 2 dikali 1000 karena ribuan --> 1 * 1000
+indeks 3 dikali 100 karena ratusan --> 8 * 100
+indeks 4 dikali 10 karena puluhan --> 3 * 10
+indeks 5 dikali 1 karena satuan --> 0 * 1
+
+sehingga string "1830" --> integer 1830
+
+
+4. selanjutya kami tinggal mencari selish dari jam masuk dan keluar jika tidak melebihi jam 23:59 kami menggunakan
+
+lama_parkir = ceil(float(keluar_parkir - masuk_parkir)/100);
+
+yang dimana nanti akan dikurangi dan dibagi 100 --> dan dibulatkan diatas sebab berdasarkan ketentuan lewat 1 menit saja terhitung 
+bayaran per jam saat ini 
+
+jika masuk pukul 1830 dan keluar 1850 --> selisih 20 menit 
+
+1850 - 1830 --> 20/100 = 0,2 --> ceil --> 1 jam
+
+
+5. apabila melebihi dari jam 23:59, jika masuk pukul 23:30 dan keluar pukul 01:00 pagi maka kami menggunakan rumus seperti ini
+
+contoh jam masuk = 23:50 dan keluar pukul = 01:00
+
+kami konversi menggunakan ini
+
+23:50 → (23 × 60 + 50) = 1430
+01:00 → (1 × 60 + 0) = 60
+
+karena jam keluar sudah lewat pukul 23:59 (lewat 1 hari) maka kami tambah dengan 1440 (jumlah menit dalam 1 hari)
+
+sehingga 60+1440 - 1430 = 70 menit --> kami konversi ke jam 70/60 = 1,1 --> lalu kami bulatkan keatas yaitu 2 jam
+
+6. Setelah itu kami tinggal mengalikan jam dengan tarif yang sudah di tentukan seperti tarif jam pertama dan selanjutnya
+
+*/
