@@ -107,7 +107,6 @@ int main(){
 
 /*  LOGIKA PENYELESAIAN
 
-
 1. cek kode 8 digit apa tidak, jika tidak maka invalid dan tidak melakukkan perhitungan
 
 2. input hari sesuai ketentuan dilihat dari indeks 0 dan 1
@@ -131,5 +130,4 @@ lalu kami kalikan dengan 100.000 --> total_belanja
 4. lalu program mencari tingkat loyalitas dari indeks 2 dan 3 sesuai dengan ketentuan yang dimana setiap 100.000 mendapatkan
 point tertentu sehingga kami membagi dulu total belanja dengan 100.000 lalu mengalikannya dengan ketentuan point
 
-5. selesai kamo mengoutputkan datanya
 */
