@@ -50,8 +50,6 @@ indeks -1 dan 0 ; indeks 0 dan 1 ; indeks 1 dan 2 ; indeks 2 dan 3 ; indeks 3 da
 
 2. jika indeks memiliki char yang sama maka dia menambah streak jika tidak dia akan meresetnya kembali ke streak 1 
 
-3. jika indeks tidak sama maka streak akan tereset kembali menjadi 1
-
-4. jika pemain mencapai streak 3 maka dia mendaptkan bonus point sebesar 2 lalu kembali mereset streak nya menjadi 1 kembali
+3. jika pemain mencapai streak 3 maka dia mendapatkan bonus point sebesar 2 lalu kembali mereset streak nya menjadi 1 kembali
 
 */
